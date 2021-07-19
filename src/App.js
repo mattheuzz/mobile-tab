@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import { Button } from './component/button/button';
+import { Home } from './component/home/home';
+import { About } from './component/about/about';
+import { Blog } from './component/blog/blog';
+import { Work } from './component/work/work';
+
 import './App.css';
 
+import { useState } from "react";
+
+
+
 function App() {
+  const [component, setComponent] = useState("home");
+
+  const activeHome = () => setComponent("home");
+  const activeWork = () => setComponent("work");
+  const activeBlog = () => setComponent("blog");
+  const activeAboutUs = () => setComponent("aboutus");
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="box-nave">
+     
+      <div className="box-img">
+        {component === "home" && <Home />}
+        {component === "work" && <Work />}
+        {component === "blog" && <Blog />}
+        {component === "aboutus" && <About />}
+      </div>
+
+      <nav className="menu">
+        <Button onClick={activeHome} operation="Home" />
+        <Button onClick={activeWork} operation="Work" />
+        <Button onClick={activeBlog} operation="Blog" />
+        <Button onClick={activeAboutUs} operation="About Us" />
+      </nav>
     </div>
   );
 }
